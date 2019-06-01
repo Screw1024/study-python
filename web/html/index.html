@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点名</title>
+    <style type="text/css">
+         body{
+            background: #f5faff;
+          }
+          .ks{
+            width: 140px;
+            line-height: 55px;
+            text-align: center;
+            font-weight: bold;
+            color: #fff;
+            text-shadow:2px 2px 2px #333;
+            border-radius: 5px;
+            margin:0 20px 20px 0;
+            position: relative;
+            overflow: hidden;
+            background-color: #2EC9A5;
+            border:1px solid #d2a000;
+            box-shadow: 0 1px 2px #fedd71 inset,0 -1px 0 #a38b39 inset,0 -2px 3px #fedd71 inset;
+          }
+          #nu{
+            background-color: #3499CC;
+          }
+          #sunxu{
+            background-color: #6A21C5;
+          }
+          #div1 { font:40px '微软雅黑';text-align: center; background-color: gainsboro;
+            width: 60%;
+            height: 60%;
+            margin-bottom:20px;
+          }
+    </style>
+    <script type="text/javascript">
+         var i = 0;
+         //t用来接收setTimeOut()的返回值，停止时清除计时器
+         var t;
+         var st = ['陈慧敏','陈丽红', '陈旭','高梦婷','葛秀婷', '黄莹莹','李军芳','李卫','朱春虎','周星宇','张智林','张威','武双斌','王文宇'
+         ,'王嵩尧','王军伟','汪志强','汪永康','汤艺成','孙路路','邱明辉','母毛宁','马骏','马家豪','罗成','吕真虎','刘路','李有','李琦','雷文峰'
+         ,'蒋伟','姜志豪','胡成宇','范志强','范凯旋','戴阳','陈永建','朱妤','朱滢','朱俊','周洁','张文婷','尹圆圆','严荣华','许杉杉','田萌萌',
+         '孙丽平','尚仪','鲁梅','刘颖'];
+         var u;
+        
+         //点名函数
+         function students()
+        {  
+          //随机点名 产生0-数组长度之间的数作为数组下标
+          var num = Math.floor(Math.random()*st.length);
+          u = st[num];
+          //更改文本框显示的value值
+          document.getElementById("div1").innerHTML = u ;
+          t = setTimeout("students()", 100);
+        }
+        
+        //点到函数
+        function diandao(){
+              if (i < st.length){
+                u = st[i];
+              }
+              else{
+                //点到最后一个就回来重新点起
+                i = 0;
+                u = st[i];
+              } 
+              u = st[i];
+              i = i + 1;
+              //更改文本框显示的value值
+              document.getElementById("div1").innerHTML = u ;
+              t = setTimeout("diandao()", 1000);
+        }
+        
+        //停止点名函数
+        function stop()
+        {
+          clearTimeout(t);
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <div align="center">
+            <input type="button" value="开始点名" onclick="students()" class="ks"/>
+            <input type="button" value="停止/继续" onclick="stop()" class="ks" id="nu"/>
+            <input type="button" value="点到" onclick="diandao()" class="ks" id="sunxu"/>
+            <hr color="blue">
+            <br/>
+            <div id="div1" align="center">这节课中奖的是：</div>
+        </div>
+    </form>
+</body>
+</html>
